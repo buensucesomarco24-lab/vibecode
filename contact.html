@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - PlayHub Pro</title>
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">🎮</span>
+            <span class="logo-text">PlayHub<span class="pro">Pro</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="contact-page">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h1 class="glitch" data-text="GET IN TOUCH">GET IN TOUCH</h1>
+                <p class="subtitle">We'd love to hear from you</p>
+                
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="icon">📧</div>
+                        <h3>Email</h3>
+                        <p>support@playhubpro.com</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">💬</div>
+                        <h3>Discord</h3>
+                        <p>discord.gg/playhubpro</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🐦</div>
+                        <h3>Twitter</h3>
+                        <p>@PlayHubPro</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-btn">📘 Facebook</a>
+                    <a href="#" class="social-btn">🐦 Twitter</a>
+                    <a href="#" class="social-btn">📸 Instagram</a>
+                    <a href="#" class="social-btn">🎮 Discord</a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <h2>Send Message</h2>
+                    
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Your Name</label>
+                        <div class="input-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Your Email</label>
+                        <div class="input-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="business">Business Partnership</option>
+                        </select>
+                        <div class="input-line"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                        <div class="input-line"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>SEND MESSAGE</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+
+                <div class="success-message hidden" id="successMessage">
+                    <div class="success-icon">✓</div>
+                    <h3>Message Sent!</h3>
+                    <p>We'll get back to you soon.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">🎮</span>
+                <span>PlayHub<span class="pro">Pro</span></span>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PlayHub Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/contact.js"></script>
+</body>
+</html>

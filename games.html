@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - PlayHub Pro</title>
+    <link rel="stylesheet" href="assets/css/games.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-wrapper">
+                <span class="logo-icon">🎮</span>
+                <div class="logo-particles"></div>
+            </div>
+            <span class="logo-text">PlayHub<span class="pro">Pro</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html" class="active">Games</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="games-page">
+        <!-- Hero Section (Matching Index Style) -->
+        <section class="hero-section">
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-glow"></div>
+            
+            <!-- Floating Shapes -->
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-pulse"></span>
+                    <span>Game Library 2024</span>
+                </div>
+                
+                <h1 class="glitch">
+                    <span class="glitch-line">CHOOSE.</span>
+                    <span class="glitch-line">PLAY.</span>
+                    <span class="glitch-line">CONQUER.</span>
+                </h1>
+                
+                <p class="subtitle">Explore our collection of premium browser games. From classic arcade to modern action, find your perfect game and dominate the leaderboard.</p>
+                
+                <!-- Filter Buttons (Integrated into Hero) -->
+                <div class="filter-container">
+                    <button class="filter-btn active magnetic-btn" data-filter="all">
+                        <span>All Games</span>
+                        <span class="btn-count">15</span>
+                    </button>
+                    <button class="filter-btn magnetic-btn" data-filter="action">
+                        <span>Action</span>
+                        <span class="btn-count">3</span>
+                    </button>
+                    <button class="filter-btn magnetic-btn" data-filter="puzzle">
+                        <span>Puzzle</span>
+                        <span class="btn-count">4</span>
+                    </button>
+                    <button class="filter-btn magnetic-btn" data-filter="arcade">
+                        <span>Arcade</span>
+                        <span class="btn-count">8</span>
+                    </button>
+                </div>
+                
+         
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- Featured Games Section (Matching Index Grid Style) -->
+        <section class="games-section" id="games">
+            <div class="section-header">
+                <span class="section-badge">Popular Now</span>
+                <h2 class="section-title">Featured Games</h2>
+                <p class="section-subtitle">Choose your battlefield and start playing instantly</p>
+            </div>
+            
+            <div class="container">
+                <div class="games-grid">
+                    <!-- Large Card: Space Shooter -->
+                    <div class="game-card card-large" data-tilt data-category="action" data-game="spaceshooter">
+                        <div class="card-border"></div>
+                        <div class="card-glow"></div>
+                        <div class="card-image">
+                            <div class="game-icon-wrapper">
+                                <div class="game-icon">🚀</div>
+                                <div class="icon-ring"></div>
+                            </div>
+                            <div class="card-overlay">
+                                <span class="play-btn">▶</span>
+                            </div>
+                            <span class="card-badge badge-hot">🔥 HOT</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Space Shooter</h3>
+                            <p>Defend the galaxy from alien invasion in epic space battles</p>
+                            <div class="card-stats">
+                                <div class="stat-bar">
+                                    <div class="stat-fill" style="--target-width: 95%"></div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="difficulty">
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                    </span>
+                                    <span class="players">👥 5.2k playing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medium Card: Neon Brick Breaker -->
+                    <div class="game-card card-medium" data-tilt data-category="arcade" data-game="brickbreaker">
+                        <div class="card-border"></div>
+                        <div class="card-glow"></div>
+                        <div class="card-image">
+                            <div class="game-icon-wrapper">
+                                <div class="game-icon">🧱</div>
+                            </div>
+                            <div class="card-overlay">
+                                <span class="play-btn">▶</span>
+                            </div>
+                            <span class="card-badge badge-new">✨ NEW</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Neon Brick Breaker</h3>
+                            <p>Classic brick breaker with neon aesthetics</p>
+                            <div class="card-stats">
+                                <span class="players">👥 2.5k playing</span>
+                                <span class="trend up">📈 +12%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Small Card: Fruit Slice -->
+                    <div class="game-card card-small" data-tilt data-category="arcade" data-game="fruitslice">
+                        <div class="card-border"></div>
+                        <div class="card-image">
+                            <div class="game-icon-wrapper">
+                                <div class="game-icon">🍉</div>
+                            </div>
+                            <div class="card-overlay">
+                                <span class="play-btn">▶</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Fruit Slice</h3>
+                            <p>Slice with precision</p>
+                        </div>
+                    </div>
+
+                    <!-- Small Card: Neon Snake -->
+                    <div class="game-card card-small" data-tilt data-category="arcade" data-game="snake">
+                        <div class="card-border"></div>
+                        <div class="card-image">
+                            <div class="game-icon-wrapper">
+                                <div class="game-icon">🐍</div>
+                            </div>
+                            <div class="card-overlay">
+                                <span class="play-btn">▶</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Neon Snake</h3>
+                            <p>Classic reimagined</p>
+                        </div>
+                    </div>
+
+                    <!-- Wide Card: Modern Tetris -->
+                    <div class="game-card card-wide" data-tilt data-category="puzzle" data-game="tetris">
+                        <div class="card-border"></div>
+                        <div class="card-glow"></div>
+                        <div class="card-image">
+                            <div class="game-icon-wrapper">
+                                <div class="game-icon">🧩</div>
+                            </div>
+                            <div class="card-overlay">
+                                <span class="play-btn">▶</span>
+                            </div>
+                            <span class="card-badge badge-pro">👑 PRO</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Modern Tetris</h3>
+                            <p>The legendary puzzle game reimagined with stunning neon visuals, power-ups, and competitive multiplayer modes</p>
+                            <div class="card-stats">
+                                <div class="stat-row">
+                                    <span class="difficulty">
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                        <span class="star filled">★</span>
+                                    </span>
+                                    <span class="players">👥 4.1k playing</span>
+                                    <span class="trend up">📈 +18%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="view-all-wrapper">
+                    <button class="btn-outline magnetic-btn load-more-btn">
+                        <span>Load More Games</span>
+                        <span class="btn-icon">↓</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Activity Section (Matching Index) -->
+        <section class="live-section">
+            <div class="live-header">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span class="live-text">LIVE ACTIVITY</span>
+                </div>
+            </div>
+            <div class="activity-ticker">
+                <div class="ticker-content" id="ticker">
+                    <span class="activity-item">🎮 Player123 just scored 15,420 in Space Shooter</span>
+                    <span class="activity-item">🏆 Maria_Gamer achieved rank #1 in Tetris</span>
+                    <span class="activity-item">⚡ SpeedDemon unlocked "Lightning Fast" achievement</span>
+                    <span class="activity-item">🎯 ProPlayer hit 100 combo in Fruit Slice</span>
+                    <span class="activity-item">🔥 New high score: 99,999 in Neon Snake Wars</span>
+                    <span class="activity-item">🌟 New player joined from Philippines</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section (Matching Index) -->
+        <section class="stats-section">
+            <div class="stats-glow"></div>
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">🎮</span>
+                        </div>
+                        <span class="s-number" data-target="15" data-suffix="+">0</span>
+                        <span class="s-label">Premium Games</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">👥</span>
+                        </div>
+                        <span class="s-number" data-target="50" data-suffix="K+">0</span>
+                        <span class="s-label">Active Players</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">🕹️</span>
+                        </div>
+                        <span class="s-number" data-target="1" data-suffix="M+">0</span>
+                        <span class="s-label">Games Played</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">⭐</span>
+                        </div>
+                        <span class="s-number" data-target="4.9" data-suffix="">0</span>
+                        <span class="s-label">Avg Rating</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section (Matching Index) -->
+        <section class="cta-section">
+            <div class="cta-glow"></div>
+            <div class="cta-content">
+                <h2>Can't Find Your Game?</h2>
+                <p>We're constantly adding new games. Subscribe to get notified!</p>
+                <a href="index.html#newsletter" class="cta-btn magnetic-btn">
+                    <span>Get Notified</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-shine"></div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Matching Index) -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-wrapper">
+                    <span class="logo-icon">🎮</span>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">PlayHub<span class="pro">Pro</span></span>
+                    <span class="brand-tagline">Next-Gen Gaming</span>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Platform</h4>
+                    <a href="index.html">Home</a>
+                    <a href="games.html">Games</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="link-group">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+                <div class="link-group">
+                    <h4>Connect</h4>
+                    <a href="#">Discord</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Facebook">📘</a>
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Twitter">🐦</a>
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Instagram">📸</a>
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Discord">💬</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-line"></div>
+            <p>&copy; 2026 PlayHub Pro. All rights reserved. | Made with 💜 for gamers</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/games.js"></script>
+</body>
+</html>

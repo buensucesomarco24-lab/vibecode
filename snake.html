@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Snake Wars - PlayHub Pro</title>
+    <link rel="stylesheet" href="../assets/css/snake.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="snake-container">
+        <!-- Animated Grid Background -->
+        <div class="grid-bg" id="gridBg"></div>
+        
+        <!-- Floating Particles -->
+        <div class="particles-container" id="particles"></div>
+        
+        <!-- Top HUD -->
+        <div class="top-hud">
+            <div class="hud-left">
+                <div class="score-box glow-box">
+                    <div class="score-label">SCORE</div>
+                    <div class="score-value" id="score">0</div>
+                    <div class="score-particles"></div>
+                </div>
+                <div class="highscore-box glow-box">
+                    <div class="highscore-label">BEST</div>
+                    <div class="highscore-value" id="highScore">0</div>
+                </div>
+            </div>
+            
+            <div class="hud-center">
+                <div class="level-display glow-box">
+                    <span>LEVEL</span>
+                    <span id="level">1</span>
+                    <div class="level-bar">
+                        <div class="level-fill" id="levelFill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hud-right">
+                <div class="lives-display" id="lives">
+                    <span class="life">❤️</span>
+                    <span class="life">❤️</span>
+                    <span class="life">❤️</span>
+                </div>
+                <div class="combo-display" id="combo">x1</div>
+            </div>
+        </div>
+
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Start Screen -->
+        <div class="game-screen" id="startScreen">
+            <div class="screen-content">
+                <div class="snake-logo">
+                    <div class="logo-glow"></div>
+                    <div class="snake-icon">🐍</div>
+                    <div class="logo-text">NEON SNAKE</div>
+                    <div class="logo-wars">WARS</div>
+                </div>
+                
+                <div class="snake-preview-3d">
+                    <div class="preview-grid-3d">
+                        <div class="neon-grid"></div>
+                        <div class="preview-snake-animated">
+                            <div class="p-head">👁️</div>
+                            <div class="p-body b1"></div>
+                            <div class="p-body b2"></div>
+                            <div class="p-body b3"></div>
+                            <div class="p-tail"></div>
+                        </div>
+                        <div class="p-food">🍎</div>
+                        <div class="p-particles">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls-hint">
+                    <div class="hint-item">
+                        <span class="hint-key">↑</span>
+                        <span>UP</span>
+                    </div>
+                    <div class="hint-item">
+                        <span class="hint-key">↓</span>
+                        <span>DOWN</span>
+                    </div>
+                    <div class="hint-item">
+                        <span class="hint-key">←</span>
+                        <span>LEFT</span>
+                    </div>
+                    <div class="hint-item">
+                        <span class="hint-key">→</span>
+                        <span>RIGHT</span>
+                    </div>
+                    <div class="hint-item space-item">
+                        <span class="hint-key wide">SPACE</span>
+                        <span>PAUSE</span>
+                    </div>
+                </div>
+                
+                <button class="play-btn neon-pulse" id="playBtn">
+                    <span class="btn-text">PLAY NOW</span>
+                    <div class="btn-shine"></div>
+                    <div class="btn-glow"></div>
+                </button>
+                
+                <div class="difficulty-select">
+                    <div class="diff-label">SELECT SPEED</div>
+                    <div class="diff-options">
+                        <button class="diff-btn" data-speed="150">
+                            <span class="d-name">SLOW</span>
+                            <span class="d-speed">🐢</span>
+                        </button>
+                        <button class="diff-btn active" data-speed="100">
+                            <span class="d-name">NORMAL</span>
+                            <span class="d-speed">🐍</span>
+                        </button>
+                        <button class="diff-btn" data-speed="70">
+                            <span class="d-name">FAST</span>
+                            <span class="d-speed">⚡</span>
+                        </button>
+                        <button class="diff-btn" data-speed="50">
+                            <span class="d-name">INSANE</span>
+                            <span class="d-speed">🔥</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div class="game-screen hidden" id="gameOverScreen">
+            <div class="screen-content">
+                <div class="game-over-icon skull-float">💀</div>
+                <div class="game-over-title glitch-text">GAME OVER</div>
+                
+                <div class="final-stats neon-panel">
+                    <div class="stat-item">
+                        <span class="stat-label">Final Score</span>
+                        <span class="stat-value" id="finalScore">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">High Score</span>
+                        <span class="stat-value high" id="finalHighScore">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Snake Length</span>
+                        <span class="stat-value" id="finalLength">0</span>
+                    </div>
+                    <div class="stat-item new-record hidden" id="newRecord">
+                        <span class="record-badge">🏆 NEW RECORD!</span>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="retry-btn neon-red" id="retryBtn">
+                        <span>TRY AGAIN</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                    <a href="../games.html" class="menu-btn neon-blue">
+                        <span>MAIN MENU</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pause Screen -->
+        <div class="game-screen hidden" id="pauseScreen">
+            <div class="screen-content">
+                <div class="pause-icon pulse-rotate">⏸️</div>
+                <h2 class="pause-title neon-text">PAUSED</h2>
+                
+                <div class="pause-stats neon-panel">
+                    <div class="pause-stat">
+                        <span class="stat-label">Score</span>
+                        <b id="pauseScore">0</b>
+                    </div>
+                    <div class="pause-stat">
+                        <span class="stat-label">Length</span>
+                        <b id="pauseLength">0</b>
+                    </div>
+                    <div class="pause-stat">
+                        <span class="stat-label">Time</span>
+                        <b id="pauseTime">00:00</b>
+                    </div>
+                </div>
+
+                <div class="pause-buttons">
+                    <button class="resume-btn neon-cyan" id="resumeBtn">
+                        <span>RESUME</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                    <button class="restart-btn neon-red" id="restartBtn">
+                        <span>RESTART</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/snake.js"></script>
+</body>
+</html>

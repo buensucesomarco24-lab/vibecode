@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Neon Pro - PlayHub Pro</title>
+    <link rel="stylesheet" href="../assets/css/tetris.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="tetris-container">
+        <!-- Side Panel Left -->
+        <div class="panel left-panel">
+            <div class="hold-box">
+                <div class="panel-title">HOLD</div>
+                <div class="hold-display" id="holdDisplay">
+                    <div class="empty-hold">PRESS C</div>
+                </div>
+            </div>
+            
+            <div class="stats-box">
+                <div class="stat">
+                    <div class="stat-name">LEVEL</div>
+                    <div class="stat-value" id="level">01</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">LINES</div>
+                    <div class="stat-value" id="lines">0</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">TIME</div>
+                    <div class="stat-value" id="time">00:00</div>
+                </div>
+            </div>
+            
+            <div class="controls-box">
+                <div class="panel-title">CONTROLS</div>
+                <div class="control-row"><kbd>←→</kbd> Move</div>
+                <div class="control-row"><kbd>↑</kbd> Rotate</div>
+                <div class="control-row"><kbd>↓</kbd> Soft Drop</div>
+                <div class="control-row"><kbd>SPACE</kbd> Hard Drop</div>
+                <div class="control-row"><kbd>C</kbd> Hold</div>
+                <div class="control-row"><kbd>P</kbd> Pause</div>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div class="main-area">
+            <div class="game-board" id="gameBoard">
+                <canvas id="gameCanvas"></canvas>
+                
+                <!-- Line Clear Effect -->
+                <div class="line-clear-effect hidden" id="lineClearEffect">
+                    <div class="clear-text">LINE CLEAR!</div>
+                    <div class="clear-count" id="clearCount">4</div>
+                </div>
+                
+                <!-- Tetris Effect -->
+                <div class="tetris-effect hidden" id="tetrisEffect">
+                    <div class="tetris-text">TETRIS!</div>
+                    <div class="tetris-bonus">+800 PTS</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Side Panel Right -->
+        <div class="panel right-panel">
+            <div class="next-box">
+                <div class="panel-title">NEXT</div>
+                <div class="next-queue" id="nextQueue">
+                    <!-- Next pieces rendered here -->
+                </div>
+            </div>
+            
+            <div class="score-box">
+                <div class="panel-title">SCORE</div>
+                <div class="score-value" id="score">0</div>
+                <div class="high-score">BEST: <span id="highScore">0</span></div>
+            </div>
+            
+            <div class="combo-box" id="comboBox">
+                <div class="combo-label">COMBO</div>
+                <div class="combo-value" id="comboValue">x1</div>
+            </div>
+        </div>
+
+        <!-- Screens -->
+        <div class="game-screen" id="startScreen">
+            <div class="screen-content">
+                <div class="tetris-logo">
+                    <div class="logo-t">T</div>
+                    <div class="logo-e">E</div>
+                    <div class="logo-t2">T</div>
+                    <div class="logo-r">R</div>
+                    <div class="logo-i">I</div>
+                    <div class="logo-s">S</div>
+                </div>
+                <div class="logo-neon">NEON PRO</div>
+                
+                <div class="piece-preview">
+                    <div class="preview-block i"></div>
+                    <div class="preview-block o"></div>
+                    <div class="preview-block t"></div>
+                    <div class="preview-block s"></div>
+                </div>
+                
+                <button class="start-btn" id="startBtn">
+                    <span class="btn-text">START GAME</span>
+                    <div class="btn-glow"></div>
+                </button>
+                
+                <div class="mode-select">
+                    <button class="mode-btn active" data-mode="marathon">MARATHON</button>
+                    <button class="mode-btn" data-mode="sprint">SPRINT</button>
+                    <button class="mode-btn" data-mode="ultra">ULTRA</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-screen hidden" id="pauseScreen">
+            <div class="screen-content compact">
+                <h2 class="pause-title">PAUSED</h2>
+                <div class="pause-stats">
+                    <div>Score: <span id="pauseScore">0</span></div>
+                    <div>Level: <span id="pauseLevel">1</span></div>
+                </div>
+                <div class="pause-buttons">
+                    <button class="btn-resume" id="resumeBtn">RESUME</button>
+                    <button class="btn-restart" id="restartBtn">RESTART</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-screen hidden" id="gameOverScreen">
+            <div class="screen-content">
+                <h2 class="game-over-title">GAME OVER</h2>
+                
+                <div class="final-stats">
+                    <div class="big-stat">
+                        <div class="big-label">FINAL SCORE</div>
+                        <div class="big-value" id="finalScore">0</div>
+                    </div>
+                    <div class="stat-grid">
+                        <div>
+                            <span class="label">Level</span>
+                            <span class="value" id="finalLevel">1</span>
+                        </div>
+                        <div>
+                            <span class="label">Lines</span>
+                            <span class="value" id="finalLines">0</span>
+                        </div>
+                        <div>
+                            <span class="label">Time</span>
+                            <span class="value" id="finalTime">00:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-play-again" id="playAgainBtn">PLAY AGAIN</button>
+                    <a href="../games.html" class="btn-menu">MAIN MENU</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/tetris.js"></script>
+</body>
+</html>

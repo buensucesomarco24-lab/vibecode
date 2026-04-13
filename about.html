@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - PlayHub Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #080b14;
+            --bg2: #0d1220;
+            --surface: #111827;
+            --surface2: #1a2235;
+            --accent: #6c63ff;
+            --accent2: #00d4ff;
+            --accent3: #ff4d6d;
+            --text: #e8eaf0;
+            --text-muted: #8892a4;
+            --border: rgba(108, 99, 255, 0.2);
+            --glow: rgba(108, 99, 255, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 68px;
+            background: rgba(8, 11, 20, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            text-decoration: none;
+        }
+        .logo-text {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: .04em;
+            color: var(--text);
+        }
+        .logo-text .pro { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); }
+        .nav-links a.active {
+            color: var(--accent2);
+            position: relative;
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 2px;
+            background: var(--accent2);
+            border-radius: 2px;
+        }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(108,99,255,.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(108,99,255,.12);
+            border: 1px solid rgba(108,99,255,.3);
+            padding: .35rem 1rem;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        .badge-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: blink 1.8s ease-in-out infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -.01em;
+            margin-bottom: 1rem;
+        }
+        .hero h1 span { color: var(--accent2); }
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .h-stat {
+            text-align: center;
+        }
+        .h-stat .val {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent2);
+            display: block;
+        }
+        .h-stat .lbl {
+            font-size: .75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        /* ── SECTION WRAPPER ── */
+        .section {
+            padding: 5rem 2rem;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .75rem;
+        }
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: .5rem;
+        }
+        .section-sub {
+            color: var(--text-muted);
+            font-size: .95rem;
+            margin-bottom: 3rem;
+        }
+
+        /* ── VALUES CARDS ── */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .value-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+        }
+        .value-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(108,99,255,.5);
+            box-shadow: 0 8px 32px rgba(108,99,255,.12);
+        }
+        .vc-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .value-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: .5rem;
+        }
+        .value-card p {
+            font-size: .88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ── FEATURES ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .feature-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: border-color .2s;
+        }
+        .feature-item:hover { border-color: rgba(0,212,255,.35); }
+        .fi-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+        .feature-item h4 { font-size: .95rem; font-weight: 600; margin-bottom: .3rem; }
+        .feature-item p { font-size: .82rem; color: var(--text-muted); line-height: 1.55; }
+
+        /* ── TEAM ── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+        .team-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .team-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(108,99,255,.07), transparent);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(108,99,255,.5);
+            box-shadow: 0 10px 36px rgba(108,99,255,.15);
+        }
+        .team-card:hover::before { opacity: 1; }
+        .tc-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 0 4px rgba(108,99,255,.15);
+        }
+        .team-card h3 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: .25rem;
+        }
+        .team-card p {
+            font-size: .78rem;
+            color: var(--text-muted);
+        }
+        .tc-click-hint {
+            display: inline-block;
+            margin-top: .75rem;
+            font-size: .7rem;
+            color: var(--accent);
+            opacity: .7;
+        }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8,11,20,.85);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal {
+            background: var(--surface2);
+            border: 1px solid rgba(108,99,255,.35);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 540px;
+            transform: translateY(20px) scale(.97);
+            transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+            position: relative;
+        }
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.1);
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, color .2s;
+        }
+        .modal-close:hover { background: rgba(255,77,109,.15); color: var(--accent3); }
+        .modal-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: .4rem;
+            color: var(--accent2);
+        }
+        .modal-sub {
+            font-size: .82rem;
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+        }
+        .member-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .65rem;
+        }
+        .member-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 10px;
+            padding: .75rem 1rem;
+            transition: background .2s, border-color .2s;
+        }
+        .member-list li:hover {
+            background: rgba(108,99,255,.1);
+            border-color: rgba(108,99,255,.3);
+        }
+        .member-num {
+            font-family: 'Orbitron', monospace;
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--accent);
+            width: 20px;
+            flex-shrink: 0;
+        }
+        .member-name {
+            font-size: .9rem;
+            font-weight: 500;
+        }
+        .member-avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(108,99,255,.08), transparent 65%);
+            pointer-events: none;
+        }
+        .cta-section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            margin-bottom: .75rem;
+        }
+        .cta-section p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: .95rem;
+            padding: .85rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background .2s, transform .2s, box-shadow .2s;
+        }
+        .cta-btn:hover {
+            background: #7c74ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(108,99,255,.35);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem 1.5rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: space-between;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-brand .logo-text { font-size: 1.1rem; }
+        .footer-brand p { font-size: .82rem; color: var(--text-muted); margin-top: .4rem; max-width: 220px; line-height: 1.5; }
+        .footer-links { display: flex; gap: 3rem; flex-wrap: wrap; }
+        .link-group h4 { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .75rem; }
+        .link-group a { display: block; font-size: .84rem; color: var(--text-muted); text-decoration: none; margin-bottom: .5rem; transition: color .2s; }
+        .link-group a:hover { color: var(--text); }
+        .footer-bottom { max-width: 1100px; margin: 1.5rem auto 0; text-align: center; font-size: .78rem; color: var(--text-muted); }
+
+        /* ── DIVIDER ── */
+        .section-divider {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-stats { gap: 1.5rem; }
+            .footer-links { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <a class="nav-brand" href="index.html">
+        <span style="font-size:1.4rem">🎮</span>
+        <span class="logo-text">PlayHub<span class="pro">Pro</span></span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="this.classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge"><span class="badge-dot"></span>Our Story</div>
+    <h1>ABOUT <span>US</span></h1>
+    <p>The passionate team behind PlayHub Pro — crafting next-gen browser gaming experiences with love and precision.</p>
+    <div class="hero-stats">
+        <div class="h-stat"><span class="val">5</span><span class="lbl">Years</span></div>
+        <div class="h-stat"><span class="val">7</span><span class="lbl">Members</span></div>
+        <div class="h-stat"><span class="val">∞</span><span class="lbl">Passion</span></div>
+    </div>
+</section>
+
+<!-- Values -->
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">What Drives Us</p>
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <span class="vc-icon">🎯</span>
+                <h3>Our Mission</h3>
+                <p>To deliver the best browser gaming experience with cutting-edge technology and stunning visuals — accessible to everyone, anywhere, without compromising quality.</p>
+            </div>
+            <div class="value-card">
+                <span class="vc-icon">💡</span>
+                <h3>Our Vision</h3>
+                <p>To become the leading platform for HTML5 games, pushing the boundaries of what's possible in browser-based gaming while maintaining smooth performance on all devices.</p>
+            </div>
+            <div class="value-card">
+                <span class="vc-icon">❤️</span>
+                <h3>Our Passion</h3>
+                <p>We're gamers at heart. Every pixel, every animation, every sound effect is crafted with love to ensure an unforgettable gaming experience.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- Features -->
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">Why Us</p>
+        <h2 class="section-title">Why Choose PlayHub Pro?</h2>
+        <p class="section-sub">Experience gaming like never before</p>
+        <div class="features-grid">
+            <div class="feature-item"><span class="fi-icon">⚡</span><div><h4>Lightning Fast</h4><p>60fps gameplay even on low-end devices with zero lag.</p></div></div>
+            <div class="feature-item"><span class="fi-icon">🎨</span><div><h4>Stunning Visuals</h4><p>Neon aesthetics and smooth animations for an immersive experience.</p></div></div>
+            <div class="feature-item"><span class="fi-icon">📱</span><div><h4>Cross-Platform</h4><p>Desktop, tablet, or mobile — responsive controls that adapt perfectly.</p></div></div>
+            <div class="feature-item"><span class="fi-icon">🔒</span><div><h4>No Downloads</h4><p>Instant play in your browser, no installation required.</p></div></div>
+            <div class="feature-item"><span class="fi-icon">🏆</span><div><h4>Competitive</h4><p>High scores, leaderboards, and achievements to keep you hooked.</p></div></div>
+            <div class="feature-item"><span class="fi-icon">🆓</span><div><h4>100% Free</h4><p>All games are completely free with no hidden costs or paywalls.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- Team -->
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">The Team</p>
+        <h2 class="section-title">Meet The Creators</h2>
+        <p class="section-sub">Click any card to see all team members</p>
+        <div class="team-grid">
+            <div class="team-card" onclick="openModal()">
+                <div class="tc-avatar">👨‍💻</div>
+                <h3>Lead Developer</h3>
+                <p>Full-stack wizard &amp; game architect</p>
+                <span class="tc-click-hint">👆 View all members</span>
+            </div>
+            <div class="team-card" onclick="openModal()">
+                <div class="tc-avatar">🎨</div>
+                <h3>UI/UX Designer</h3>
+                <p>Visual perfectionist &amp; animator</p>
+                <span class="tc-click-hint">👆 View all members</span>
+            </div>
+            <div class="team-card" onclick="openModal()">
+                <div class="tc-avatar">🎵</div>
+                <h3>Sound Engineer</h3>
+                <p>Audio experience creator</p>
+                <span class="tc-click-hint">👆 View all members</span>
+            </div>
+            <div class="team-card" onclick="openModal()">
+                <div class="tc-avatar">🚀</div>
+                <h3>DevOps</h3>
+                <p>Infrastructure &amp; performance guru</p>
+                <span class="tc-click-hint">👆 View all members</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Members Modal -->
+<div class="modal-overlay" id="membersModal" onclick="closeModalOutside(event)">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <p class="modal-title">Team Members</p>
+        <p class="modal-sub">The people who make PlayHub Pro possible</p>
+        <ul class="member-list">
+            <li>
+                <span class="member-num">01</span>
+                <span class="member-name">Marco Buensuceso</span>
+                <span class="member-avatar">MB</span>
+            </li>
+            <li>
+                <span class="member-num">02</span>
+                <span class="member-name">Jiro Dumale</span>
+                <span class="member-avatar">JD</span>
+            </li>
+            <li>
+                <span class="member-num">03</span>
+                <span class="member-name">Aron Jade Magadan</span>
+                <span class="member-avatar">AJ</span>
+            </li>
+            <li>
+                <span class="member-num">04</span>
+                <span class="member-name">Andrew Talplacido</span>
+                <span class="member-avatar">AT</span>
+            </li>
+            <li>
+                <span class="member-num">05</span>
+                <span class="member-name">Kelvin Joshua Bautista</span>
+                <span class="member-avatar">KB</span>
+            </li>
+            <li>
+                <span class="member-num">06</span>
+                <span class="member-name">Joseph Rosario</span>
+                <span class="member-avatar">JR</span>
+            </li>
+            <li>
+                <span class="member-num">07</span>
+                <span class="member-name">Simon Bautista</span>
+                <span class="member-avatar">SB</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Ready to Play?</h2>
+    <p>Join thousands of gamers already enjoying our collection</p>
+    <a href="games.html" class="cta-btn">Explore Games <span>→</span></a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="logo-text">PlayHub<span class="pro">Pro</span></span>
+            <p>Next-generation browser gaming, built with passion by a dedicated team.</p>
+        </div>
+        <div class="footer-links">
+            <div class="link-group">
+                <h4>Platform</h4>
+                <a href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="link-group">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+            <div class="link-group">
+                <h4>Connect</h4>
+                <a href="#">Discord</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 PlayHub Pro. All rights reserved. Made with 💜 for gamers.</p>
+    </div>
+</footer>
+
+<script>
+    function openModal() {
+        document.getElementById('membersModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('membersModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    function closeModalOutside(e) {
+        if (e.target === document.getElementById('membersModal')) closeModal();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>

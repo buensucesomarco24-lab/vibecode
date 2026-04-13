@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Defender Pro - PlayHub Pro</title>
+    <link rel="stylesheet" href="../assets/css/spaceshooter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dynamic Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+    
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-section left">
+            <div class="hud-item">
+                <div class="hud-icon">🏆</div>
+                <div class="hud-info">
+                    <span class="hud-label">SCORE</span>
+                    <span class="hud-value" id="score">0</span>
+                </div>
+            </div>
+            <div class="hud-item">
+                <div class="hud-icon">⭐</div>
+                <div class="hud-info">
+                    <span class="hud-label">BEST</span>
+                    <span class="hud-value" id="bestScore">0</span>
+                </div>
+            </div>
+            <div class="hud-item">
+                <div class="hud-icon">🌊</div>
+                <div class="hud-info">
+                    <span class="hud-label">WAVE</span>
+                    <span class="hud-value" id="wave">1</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hud-center">
+            <div class="boss-warning hidden" id="bossWarning">⚠️ BOSS INCOMING ⚠️</div>
+        </div>
+        
+        <div class="hud-section right">
+            <div class="hud-item vertical">
+                <span class="hud-label">SHIELD</span>
+                <div class="shield-bar-container">
+                    <div class="shield-bar" id="shieldBar"></div>
+                    <div class="shield-text" id="shieldText">100%</div>
+                </div>
+            </div>
+            <div class="hud-item vertical">
+                <span class="hud-label">WEAPON</span>
+                <div class="weapon-display" id="weaponDisplay">⚡ LVL 1</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Weapon Status -->
+    <div class="weapon-status" id="weaponStatus">
+        <div class="weapon-charge" id="weaponCharge"></div>
+    </div>
+
+    <!-- Screens -->
+    <div class="game-screen" id="startScreen">
+        <div class="screen-content">
+            <div class="game-logo">
+                <div class="logo-line1">GALACTIC</div>
+                <div class="logo-line2">DEFENDER</div>
+                <div class="logo-pro">PRO</div>
+            </div>
+            
+            <div class="ship-showcase">
+                <div class="showcase-ship" id="showcaseShip">🚀</div>
+                <div class="engine-trail"></div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <span class="f-icon">👾</span>
+                    <span class="f-text">50+ Enemy Types</span>
+                </div>
+                <div class="feature">
+                    <span class="f-icon">⚡</span>
+                    <span class="f-text">Upgrade System</span>
+                </div>
+                <div class="feature">
+                    <span class="f-icon">🎆</span>
+                    <span class="f-text">Epic Boss Battles</span>
+                </div>
+            </div>
+            
+            <button class="launch-btn" id="launchBtn">
+                <span class="btn-text">LAUNCH MISSION</span>
+                <div class="btn-fire"></div>
+            </button>
+            
+            <div class="difficulty-selector">
+                <button class="diff-option" data-diff="rookie">ROOKIE</button>
+                <button class="diff-option active" data-diff="pilot">PILOT</button>
+                <button class="diff-option" data-diff="ace">ACE</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-screen hidden" id="gameOverScreen">
+        <div class="screen-content">
+            <div class="mission-failed">MISSION FAILED</div>
+            <div class="explosion-anim">💥</div>
+            
+            <div class="final-stats">
+                <div class="stat-row">
+                    <span>Final Score</span>
+                    <span class="highlight" id="finalScore">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Best Score</span>
+                    <span class="highlight" id="finalBestScore">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Waves Survived</span>
+                    <span class="highlight" id="finalWave">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Enemies Destroyed</span>
+                    <span class="highlight" id="finalKills">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Accuracy</span>
+                    <span class="highlight" id="finalAccuracy">0%</span>
+                </div>
+            </div>
+            
+            <div class="rank-display" id="rankDisplay">
+                <div class="rank-title">RANK ACHIEVED</div>
+                <div class="rank-name">SPACE CADET</div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="play-again-btn" id="playAgainBtn">🔄 PLAY AGAIN</button>
+                <button class="retry-btn" id="retryBtn">💥 RETRY MISSION</button>
+                <a href="../games.html" class="hangar-btn">🏠 RETURN TO HANGAR</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-screen hidden" id="waveScreen">
+        <div class="screen-content compact">
+            <div class="wave-complete">WAVE COMPLETE</div>
+            <div class="wave-stats" id="waveStats"></div>
+            <button class="continue-btn" id="continueBtn">NEXT WAVE →</button>
+        </div>
+    </div>
+
+    <!-- Controls Hint -->
+    <div class="controls-overlay">
+        <div class="control-hint">
+            <kbd>WASD</kbd> or <kbd>↑↓←→</kbd> to Move
+        </div>
+        <div class="control-hint">
+            <kbd>SPACE</kbd> to Shoot
+        </div>
+        <div class="control-hint">
+            <kbd>SHIFT</kbd> for Boost
+        </div>
+        <div class="control-hint">
+            <kbd>P</kbd> to Pause
+        </div>
+    </div>
+
+    <!-- Mobile Controls -->
+    <div class="mobile-controls" id="mobileControls">
+        <div class="joystick-area" id="joystickArea">
+            <div class="joystick" id="joystick"></div>
+        </div>
+        <div class="fire-btn" id="fireBtn">🔥</div>
+    </div>
+
+    <script src="../assets/js/spaceshooter.js"></script>
+</body>
+</html>

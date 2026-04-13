@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Brick Breaker Pro - PlayHub Pro</title>
+    <link rel="stylesheet" href="../assets/css/brickbreaker.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <!-- Top UI Bar -->
+    <div class="top-bar">
+        <a href="../games.html" class="back-link">
+            <span class="arrow">←</span> BACK TO GAMES
+        </a>
+        <div class="game-title-small">NEON BRICK BREAKER <span class="pro-badge">PRO</span></div>
+        <div class="sound-toggle" id="soundToggle">🔊</div>
+    </div>
+
+    <!-- Main Game Container -->
+    <div class="game-wrapper">
+        <!-- Left Panel - Stats -->
+        <div class="side-panel left-panel">
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-label">SCORE</div>
+                <div class="stat-value" id="score">0</div>
+            </div>
+            
+            <div class="stat-card best-card">
+                <div class="stat-icon">🌟</div>
+                <div class="stat-label">BEST SCORE</div>
+                <div class="stat-value best" id="bestScore">0</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-label">LEVEL</div>
+                <div class="stat-value" id="level">1</div>
+                <div class="level-progress">
+                    <div class="progress-bar" id="levelProgress"></div>
+                </div>
+            </div>
+            
+            <!-- LIVES CARD WITH TEXT DISPLAY -->
+            <div class="stat-card">
+                <div class="stat-icon">❤️</div>
+                <div class="stat-label">LIVES</div>
+                <div class="lives-container" id="lives">
+                    <div class="life active"></div>
+                    <div class="life active"></div>
+                    <div class="life active"></div>
+                </div>
+                <!-- LIVES TEXT DISPLAY -->
+                <div class="lives-text" id="livesText">3 / 3 LIVES</div>
+            </div>
+
+            <div class="power-ups-panel">
+                <div class="panel-title">POWER-UPS</div>
+                <div class="power-up-slots" id="activePowerUps"></div>
+            </div>
+        </div>
+
+        <!-- Center - Game Area -->
+        <div class="game-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <!-- MAIN MENU SCREEN -->
+            <div class="screen-overlay" id="mainMenuScreen">
+                <div class="overlay-content main-menu-content">
+                    <div class="logo-animation main-logo">
+                        <div class="neon-text" data-text="NEON">NEON</div>
+                        <div class="neon-text sub" data-text="BRICK BREAKER">BRICK BREAKER</div>
+                        <div class="pro-badge-large">PRO</div>
+                    </div>
+                    
+                    <div class="menu-best-score">
+                        <div class="best-label">🏆 ALL-TIME BEST</div>
+                        <div class="best-value" id="menuBestScore">0</div>
+                    </div>
+                    
+                    <div class="menu-buttons">
+                        <button class="menu-btn-large play-btn" id="menuPlayBtn">
+                            <span class="btn-icon">▶</span>
+                            <span class="btn-text-large">PLAY GAME</span>
+                        </button>
+                        
+                        <button class="menu-btn-large instructions-btn" id="menuInstructionsBtn">
+                            <span class="btn-icon">📖</span>
+                            <span class="btn-text-large">HOW TO PLAY</span>
+                        </button>
+                        
+                        <button class="menu-btn-large settings-btn" id="menuSettingsBtn">
+                            <span class="btn-icon">⚙️</span>
+                            <span class="btn-text-large">SETTINGS</span>
+                        </button>
+                    </div>
+                    
+                    <div class="menu-quick-stats">
+                        <div class="quick-stat">
+                            <span class="quick-label">Games Played</span>
+                            <span class="quick-value" id="menuGamesPlayed">0</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="quick-label">Total Bricks</span>
+                            <span class="quick-value" id="menuTotalBricks">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-footer">
+                        <a href="../games.html" class="back-to-hub">
+                            ← Back to Games Hub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions Modal -->
+            <div class="screen-overlay hidden" id="instructionsScreen">
+                <div class="overlay-content compact">
+                    <h2 class="modal-title">📖 HOW TO PLAY</h2>
+                    
+                    <div class="instructions-content">
+                        <div class="instruction-item">
+                            <div class="instr-icon">🖱️</div>
+                            <div class="instr-text">
+                                <strong>Move Mouse</strong> to control the paddle
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instr-icon">🖱️</div>
+                            <div class="instr-text">
+                                <strong>Click</strong> or press <strong>SPACE</strong> to launch ball
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instr-icon">⌨️</div>
+                            <div class="instr-text">
+                                Use <strong>Arrow Keys</strong> or <strong>A/D</strong> to move paddle
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instr-icon">⏸️</div>
+                            <div class="instr-text">
+                                Press <strong>P</strong> or <strong>ESC</strong> to pause
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="power-ups-info-menu">
+                        <h3>⚡ POWER-UPS</h3>
+                        <div class="power-up-grid">
+                            <div class="pu-menu-item">
+                                <span class="pu-emoji">🔴🔴🔴</span>
+                                <span class="pu-name-menu">Multi-Ball</span>
+                            </div>
+                            <div class="pu-menu-item">
+                                <span class="pu-emoji">⬅️➡️</span>
+                                <span class="pu-name-menu">Big Paddle</span>
+                            </div>
+                            <div class="pu-menu-item">
+                                <span class="pu-emoji">⚡</span>
+                                <span class="pu-name-menu">Laser</span>
+                            </div>
+                            <div class="pu-menu-item">
+                                <span class="pu-emoji">⏱️</span>
+                                <span class="pu-name-menu">Slow-Mo</span>
+                            </div>
+                            <div class="pu-menu-item">
+                                <span class="pu-emoji">🔥</span>
+                                <span class="pu-name-menu">Fire Ball</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="back-btn" id="backFromInstructions">← BACK</button>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div class="screen-overlay hidden" id="settingsScreen">
+                <div class="overlay-content compact">
+                    <h2 class="modal-title">⚙️ SETTINGS</h2>
+                    
+                    <div class="settings-list">
+                        <div class="setting-item">
+                            <span class="setting-label">Sound Effects</span>
+                            <button class="toggle-btn active" id="settingsSoundToggle">🔊 ON</button>
+                        </div>
+                        <div class="setting-item">
+                            <span class="setting-label">Difficulty</span>
+                            <div class="difficulty-select settings-diff">
+                                <button class="diff-btn" data-diff="easy">EASY</button>
+                                <button class="diff-btn active" data-diff="normal">NORMAL</button>
+                                <button class="diff-btn" data-diff="hard">HARD</button>
+                            </div>
+                        </div>
+                        <div class="setting-item danger-zone">
+                            <span class="setting-label">Reset Progress</span>
+                            <button class="reset-btn" id="resetProgressBtn">🗑️ CLEAR DATA</button>
+                        </div>
+                    </div>
+                    
+                    <button class="back-btn" id="backFromSettings">← BACK</button>
+                </div>
+            </div>
+            
+            <!-- Start Screen -->
+            <div class="screen-overlay hidden" id="startScreen">
+                <div class="overlay-content">
+                    <div class="logo-animation">
+                        <div class="neon-text" data-text="NEON">NEON</div>
+                        <div class="neon-text sub" data-text="BRICK BREAKER">BRICK BREAKER</div>
+                    </div>
+                    
+                    <div class="best-score-box">
+                        <div class="best-label">🏆 ALL-TIME BEST</div>
+                        <div class="best-value" id="startBestScore">0</div>
+                    </div>
+                    
+                    <div class="history-box">
+                        <div class="history-title">📊 RECENT GAMES</div>
+                        <div class="history-list" id="historyList"></div>
+                    </div>
+
+                    <div class="controls-showcase">
+                        <div class="control-item">
+                            <div class="key">🖱️</div>
+                            <span>Move Mouse to Control Paddle</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="key">CLICK</div>
+                            <span>Click to Launch Ball</span>
+                        </div>
+                        <div class="control-item">
+                            <div class="key">P</div>
+                            <span>Pause Game</span>
+                        </div>
+                    </div>
+
+                    <button class="start-btn pulse" id="startBtn">
+                        <span class="btn-text">START GAME</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                    
+                    <div class="difficulty-select">
+                        <button class="diff-btn active" data-diff="normal">NORMAL</button>
+                        <button class="diff-btn" data-diff="hard">HARD</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pause Screen -->
+            <div class="screen-overlay hidden" id="pauseScreen">
+                <div class="overlay-content compact">
+                    <h2 class="pause-title">PAUSED</h2>
+                    <div class="pause-stats">
+                        <div>Current Score: <span id="pauseScore">0</span></div>
+                        <div>Level: <span id="pauseLevel">1</span></div>
+                        <div>Best Score: <span id="pauseBestScore">0</span></div>
+                    </div>
+                    <div class="pause-buttons">
+                        <button class="resume-btn" id="resumeBtn">RESUME</button>
+                        <button class="restart-btn" id="restartBtnPause">RESTART</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Complete Screen -->
+            <div class="screen-overlay hidden" id="levelCompleteScreen">
+                <div class="overlay-content compact">
+                    <div class="level-complete-badge">LEVEL COMPLETE!</div>
+                    <div class="bonus-display">
+                        <div class="bonus-item">
+                            <span class="bonus-label">Level Bonus</span>
+                            <span class="bonus-value" id="levelBonus">+1000</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-label">Lives Bonus</span>
+                            <span class="bonus-value" id="livesBonus">+300</span>
+                        </div>
+                    </div>
+                    <button class="next-level-btn" id="nextLevelBtn">NEXT LEVEL →</button>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div class="screen-overlay hidden" id="gameOverScreen">
+                <div class="overlay-content">
+                    <div class="game-over-animation">
+                        <div class="crash-effect">💥</div>
+                        <h2 class="game-over-title">GAME OVER</h2>
+                    </div>
+                    
+                    <div class="final-stats-display">
+                        <div class="big-stat">
+                            <span class="big-label">FINAL SCORE</span>
+                            <span class="big-value" id="finalScore">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Level Reached: <b id="finalLevel">1</b></span>
+                            <span>Bricks Destroyed: <b id="finalBricks">0</b></span>
+                        </div>
+                        <div class="high-score-badge hidden" id="highScoreBadge">🏆 NEW HIGH SCORE!</div>
+                        
+                        <div class="session-stats" id="sessionStats">
+                            <div class="session-title">📈 THIS SESSION</div>
+                            <div class="session-grid">
+                                <div class="session-item">
+                                    <span class="session-label">Games</span>
+                                    <span class="session-value" id="sessionGames">0</span>
+                                </div>
+                                <div class="session-item">
+                                    <span class="session-label">Best</span>
+                                    <span class="session-value" id="sessionBest">0</span>
+                                </div>
+                                <div class="session-item">
+                                    <span class="session-label">Average</span>
+                                    <span class="session-value" id="sessionAvg">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-over-buttons">
+                        <button class="play-again-btn" id="playAgainBtn">🔄 PLAY AGAIN</button>
+                        <button class="main-menu-btn" id="mainMenuBtn">🏠 MAIN MENU</button>
+                    </div>
+                    
+                    <div style="margin-top: 1rem;">
+                        <a href="../games.html" class="menu-btn-link">← Return to Games Hub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-area" id="notificationArea"></div>
+
+            <div class="combo-display hidden" id="comboDisplay">
+                <div class="combo-text">COMBO!</div>
+                <div class="combo-count" id="comboCount">x3</div>
+                <div class="combo-glow"></div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="side-panel right-panel">
+            <div class="power-ups-info">
+                <div class="panel-title">AVAILABLE POWER-UPS</div>
+                <div class="power-up-list">
+                    <div class="power-up-item" data-type="multiball">
+                        <div class="pu-icon">🔴🔴🔴</div>
+                        <div class="pu-name">Multi-Ball</div>
+                        <div class="pu-desc">3 balls at once</div>
+                    </div>
+                    <div class="power-up-item" data-type="bigpaddle">
+                        <div class="pu-icon">⬅️➡️</div>
+                        <div class="pu-name">Big Paddle</div>
+                        <div class="pu-desc">Wider paddle</div>
+                    </div>
+                    <div class="power-up-item" data-type="laser">
+                        <div class="pu-icon">⚡</div>
+                        <div class="pu-name">Laser</div>
+                        <div class="pu-desc">Shoot lasers</div>
+                    </div>
+                    <div class="power-up-item" data-type="slowmo">
+                        <div class="pu-icon">⏱️</div>
+                        <div class="pu-name">Slow-Mo</div>
+                        <div class="pu-desc">Slow ball speed</div>
+                    </div>
+                    <div class="power-up-item" data-type="fireball">
+                        <div class="pu-icon">🔥</div>
+                        <div class="pu-name">Fire Ball</div>
+                        <div class="pu-desc">Destroys all bricks</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-reminder">
+                <div class="panel-title">CONTROLS</div>
+                <div class="reminder-item">
+                    <span class="key-mini">🖱️</span>
+                    <span>Move paddle</span>
+                </div>
+                <div class="reminder-item">
+                    <span class="key-mini">CLICK</span>
+                    <span>Launch ball</span>
+                </div>
+                <div class="reminder-item">
+                    <span class="key-mini">P</span>
+                    <span>Pause</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/brickbreaker.js"></script>
+</body>
+</html>
