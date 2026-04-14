@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayHub Pro - Next-Gen Gaming Experience</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-wrapper">
+                <span class="logo-icon">🎮</span>
+                <div class="logo-particles"></div>
+            </div>
+            <span class="logo-text">PlayHub<span class="pro">Pro</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="home-page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-glow"></div>
+            
+            <!-- Floating Shapes -->
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-pulse"></span>
+                    <span>Premium Gaming Hub 2024</span>
+                </div>
+                
+                <h1 class="glitch">
+                    <span class="glitch-line">PLAY.</span>
+                    <span class="glitch-line">COMPETE.</span>
+                    <span class="glitch-line">DOMINATE.</span>
+                </h1>
+                
+                <p class="subtitle">Experience the next generation of browser gaming with stunning visuals, immersive gameplay, and real-time competition.</p>
+                
+                <div class="hero-buttons">
+                    <a href="game.html" class="cta-btn magnetic-btn">
+                        <span>Start Playing</span>
+                        <span class="btn-icon">▶</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="#game-preview" class="btn-secondary magnetic-btn">
+                        <span>View Game</span>
+                        <span class="btn-icon">↓</span>
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="h-stat">
+                        <span class="h-icon">👥</span>
+                        <span class="h-value" data-target="50">0</span>
+                        <span class="h-label">K+ Players</span>
+                    </div>
+                    <div class="h-stat">
+                        <span class="h-icon">🎮</span>
+                        <span class="h-value" data-target="1">0</span>
+                        <span class="h-label">Epic Game</span>
+                    </div>
+                    <div class="h-stat">
+                        <span class="h-icon">⭐</span>
+                        <span class="h-value" data-target="4.9">0</span>
+                        <span class="h-label">Rating</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- Featured Game Section -->
+        <section class="games-section" id="game-preview">
+            <div class="section-header">
+                <span class="section-badge">Featured Game</span>
+                <h2 class="section-title">Space Shooter</h2>
+                <p class="section-subtitle">Defend the galaxy from alien invasion in this epic space battle</p>
+            </div>
+            
+            <div class="container">
+                <div class="featured-game-card" data-tilt>
+                    <div class="card-border"></div>
+                    <div class="card-glow"></div>
+                    <div class="card-image">
+                        <div class="game-icon-wrapper">
+                            <div class="game-icon">🚀</div>
+                            <div class="icon-ring"></div>
+                        </div>
+                        <div class="card-overlay">
+                            <a href="game.html" class="play-btn">▶</a>
+                        </div>
+                        <span class="card-badge badge-hot">🔥 HOT</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Space Shooter</h3>
+                        <p>Pilot your spacecraft through waves of alien invaders. Collect power-ups, dodge enemy fire, and save the galaxy in this action-packed shooting game.</p>
+                        <div class="card-stats">
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="--target-width: 85%"></div>
+                            </div>
+                            <div class="stat-row">
+                                <span class="difficulty">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
+                                </span>
+                                <span class="players">👥 12.5k playing</span>
+                                <span class="trend up">📈 +24%</span>
+                            </div>
+                        </div>
+                        <a href="game.html" class="cta-btn play-now-btn">
+                            <span>Play Now</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Activity Section -->
+        <section class="live-section">
+            <div class="live-header">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span class="live-text">LIVE ACTIVITY</span>
+                </div>
+            </div>
+            <div class="activity-ticker">
+                <div class="ticker-content" id="ticker">
+                    <span class="activity-item">🎮 Player123 just scored 15,420 in Space Shooter</span>
+                    <span class="activity-item">🏆 Maria_Gamer achieved rank #1 in Space Shooter</span>
+                    <span class="activity-item">⚡ SpeedDemon unlocked "Lightning Fast" achievement</span>
+                    <span class="activity-item">🎯 ProPlayer hit 100 combo in Space Shooter</span>
+                    <span class="activity-item">🔥 New high score: 99,999 in Space Shooter</span>
+                    <span class="activity-item">🌟 New player joined from Philippines</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-glow"></div>
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">🌍</span>
+                        </div>
+                        <span class="s-number" data-target="50" data-suffix="K+">0</span>
+                        <span class="s-label">Active Players</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">🎮</span>
+                        </div>
+                        <span class="s-number" data-target="1" data-suffix="">0</span>
+                        <span class="s-label">Epic Game</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">🕹️</span>
+                        </div>
+                        <span class="s-number" data-target="1" data-suffix="M+">0</span>
+                        <span class="s-label">Games Played</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon-wrap">
+                            <span class="s-icon">⚡</span>
+                        </div>
+                        <span class="s-number" data-target="99" data-suffix="%">0</span>
+                        <span class="s-label">Uptime</span>
+                        <div class="s-progress">
+                            <div class="s-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-glow"></div>
+            <div class="newsletter-content">
+                <div class="newsletter-icon">📧</div>
+                <h2>Join the Elite</h2>
+                <p>Get exclusive updates, new features, and special rewards</p>
+                <form class="newsletter-form">
+                    <div class="input-wrapper magnetic-input">
+                        <input type="email" placeholder="Enter your email" required>
+                        <div class="input-border"></div>
+                    </div>
+                    <button type="submit" class="cta-btn submit-btn">
+                        <span>Subscribe</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-glow"></div>
+            <div class="cta-content">
+                <h2>Ready to Play?</h2>
+                <p>Join thousands of gamers already enjoying Space Shooter</p>
+                <a href="game.html" class="cta-btn magnetic-btn">
+                    <span>Start Gaming Now</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-shine"></div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-wrapper">
+                    <span class="logo-icon">🎮</span>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">PlayHub<span class="pro">Pro</span></span>
+                    <span class="brand-tagline">Next-Gen Gaming</span>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Platform</h4>
+                    <a href="index.html">Home</a>
+                    <a href="game.html">Game</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="link-group">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+                <div class="link-group">
+                    <h4>Connect</h4>
+                    <a href="#">Discord</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Facebook">📘</a>
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Twitter">🐦</a>
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Instagram">📸</a>
+                <a href="#" class="social-icon magnetic-icon" data-tooltip="Discord">💬</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-line"></div>
+            <p>&copy; 2026 PlayHub Pro. All rights reserved. | Made with 💜 for gamers</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
